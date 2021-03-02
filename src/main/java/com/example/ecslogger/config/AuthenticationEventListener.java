@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Scope;
@@ -26,10 +27,14 @@ public class AuthenticationEventListener implements ApplicationListener<Abstract
 
 	@Autowired
 	private HttpServletRequest request;
+	
+	@Value("${spring.application.name}")
+	private String appName;
 
 	@Override
 	public void onApplicationEvent(AbstractAuthenticationEvent authenticationEvent) {
 		Authentication authentication = authenticationEvent.getAuthentication();
+		MDC.put("app_name", appName);
 		MDC.put("user.name", authentication.getName());
 		MDC.put("url.full", request.getRequestURI());
 		if (request.getHeader("x-forwarded-for") != null) {

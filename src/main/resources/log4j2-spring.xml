@@ -2,7 +2,7 @@
 <Configuration status="DEBUG">
     <Appenders>
         <Console name="LogToConsole" target="SYSTEM_OUT">
-            <EcsLayout serviceName="ecs-logger"/>
+            <EcsLayout/>
         </Console>
     </Appenders>
     <Loggers>
