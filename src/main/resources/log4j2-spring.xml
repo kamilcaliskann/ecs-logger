@@ -2,7 +2,9 @@
 <Configuration status="DEBUG">
     <Appenders>
         <Console name="LogToConsole" target="SYSTEM_OUT">
-            <EcsLayout/>
+            <JsonLayout  complete="false" compact="true" eventEol="true" properties="true" stacktraceAsString="true">
+                <KeyValuePair key="log-owner" value="ecs-logger"/>
+            </JsonLayout>
         </Console>
     </Appenders>
     <Loggers>
