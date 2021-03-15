@@ -65,6 +65,7 @@ public class AuthenticationEventListener implements ApplicationListener<Abstract
 		}
 
 		// Clear MDC data for reuse of the thread
+		MDC.put("params", "{DB_ID=073fc186-4ae2-4fce-a2f2-f353b6d0ddae, OLUSTURAN_KULLANICI=6594fb8c-3272-4201-9789-45ebdcb07d46, AD=test, VERSION=0, GUNCELLEME_ZAMANI=1615795499521, SON_GUNCELLEYEN_KULLANICI=6594fb8c-3272-4201-9789-45ebdcb07d46, SILINDI=false, OLUSMA_ZAMANI=1615795499521}");
 		MDC.clear();
 
 	}
