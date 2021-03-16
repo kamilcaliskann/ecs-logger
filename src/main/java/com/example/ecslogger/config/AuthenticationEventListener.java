@@ -18,25 +18,27 @@ import org.springframework.stereotype.Component;
 
 import com.example.ecslogger.enumeration.LogEvents;
 
-
 @Component
-@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE) //More overhead but workaround for the singleton
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE) // More overhead but workaround for the singleton
 public class AuthenticationEventListener implements ApplicationListener<AbstractAuthenticationEvent> {
 
 	private static Logger logger = LoggerFactory.getLogger(AuthenticationEventListener.class);
 
 	@Autowired
 	private HttpServletRequest request;
-	
+
 	@Value("${spring.application.name}")
 	private String appName;
 
 	@Override
 	public void onApplicationEvent(AbstractAuthenticationEvent authenticationEvent) {
 		Authentication authentication = authenticationEvent.getAuthentication();
+		MDC.put("test", "test");
 		MDC.put("app_name", appName);
 		MDC.put("user.name", authentication.getName());
 		MDC.put("url.full", request.getRequestURI());
+		MDC.put("params",
+				"{DB_ID=073fc186-4ae2-4fce-a2f2-f353b6d0ddae, OLUSTURAN_KULLANICI=6594fb8c-3272-4201-9789-45ebdcb07d46, AD=test, VERSION=0, GUNCELLEME_ZAMANI=1615795499521, SON_GUNCELLEYEN_KULLANICI=6594fb8c-3272-4201-9789-45ebdcb07d46, SILINDI=false, OLUSMA_ZAMANI=1615795499521}");
 		if (request.getHeader("x-forwarded-for") != null) {
 			MDC.put("source.ip", request.getHeader("x-forwarded-for"));
 		} else {
@@ -65,7 +67,6 @@ public class AuthenticationEventListener implements ApplicationListener<Abstract
 		}
 
 		// Clear MDC data for reuse of the thread
-		MDC.put("params", "{DB_ID=073fc186-4ae2-4fce-a2f2-f353b6d0ddae, OLUSTURAN_KULLANICI=6594fb8c-3272-4201-9789-45ebdcb07d46, AD=test, VERSION=0, GUNCELLEME_ZAMANI=1615795499521, SON_GUNCELLEYEN_KULLANICI=6594fb8c-3272-4201-9789-45ebdcb07d46, SILINDI=false, OLUSMA_ZAMANI=1615795499521}");
 		MDC.clear();
 
 	}
