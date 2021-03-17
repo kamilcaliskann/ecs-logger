@@ -37,8 +37,8 @@ public class AuthenticationEventListener implements ApplicationListener<Abstract
 		MDC.put("app_name", appName);
 		MDC.put("user.name", authentication.getName());
 		MDC.put("url.full", request.getRequestURI());
-		MDC.put("params",
-				"{DB_ID=073fc186-4ae2-4fce-a2f2-f353b6d0ddae, OLUSTURAN_KULLANICI=6594fb8c-3272-4201-9789-45ebdcb07d46, AD=test, VERSION=0, GUNCELLEME_ZAMANI=1615795499521, SON_GUNCELLEYEN_KULLANICI=6594fb8c-3272-4201-9789-45ebdcb07d46, SILINDI=false, OLUSMA_ZAMANI=1615795499521}");
+		MDC.put("params", "{\"DB_ID\":\"c32c0c4f-7c55-41dd-a2bb-3b4108349aa9\",\"OLUSTURAN_KULLANICI\":\"6594fb8c-3272-4201-9789-45ebdcb07d46\",\"AD\":\"test\",\"VERSION\":\"0\",\"GUNCELLEME_ZAMANI\":\"1615982733990\",\"SON_GUNCELLEYEN_KULLANICI\":\"6594fb8c-3272-4201-9789-45ebdcb07d46\",\"SILINDI\":\"false\",\"OLUSMA_ZAMANI\":\"1615982733990\"}");
+		
 		if (request.getHeader("x-forwarded-for") != null) {
 			MDC.put("source.ip", request.getHeader("x-forwarded-for"));
 		} else {
