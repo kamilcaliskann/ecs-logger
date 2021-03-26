@@ -53,7 +53,8 @@ public class AuthenticationEventListener implements ApplicationListener<Abstract
 
 		if (authentication.isAuthenticated()) {
 			MDC.put("event.action", LogEvents.LOGIN_SUCCESS.name());
-			logger.info("{\"DB_ID\":\"c32c0c4f-7c55-41dd-a2bb-3b4108349aa9\",\"OLUSTURAN_KULLANICI\":\"6594fb8c-3272-4201-9789-45ebdcb07d46\",\"AD\":\"test\",\"VERSION\":\"0\",\"GUNCELLEME_ZAMANI\":\"1615982733990\",\"SON_GUNCELLEYEN_KULLANICI\":\"6594fb8c-3272-4201-9789-45ebdcb07d46\",\"SILINDI\":\"false\",\"OLUSMA_ZAMANI\":\"1615982733990\"}");
+			MDC.put("log", "{\"DB_ID\":\"c32c0c4f-7c55-41dd-a2bb-3b4108349aa9\",\"OLUSTURAN_KULLANICI\":\"6594fb8c-3272-4201-9789-45ebdcb07d46\",\"AD\":\"test\",\"VERSION\":\"0\",\"GUNCELLEME_ZAMANI\":\"1615982733990\",\"SON_GUNCELLEYEN_KULLANICI\":\"6594fb8c-3272-4201-9789-45ebdcb07d46\",\"SILINDI\":\"false\",\"OLUSMA_ZAMANI\":\"1615982733990\"}");
+			logger.info("[{}] logged in successfully", authentication.getName());
 		} else {
 			MDC.put("event.action", LogEvents.LOGIN_FAILURE.name());
 			logger.warn("[{}] failed to log in with password [{}]", authentication.getName(),
